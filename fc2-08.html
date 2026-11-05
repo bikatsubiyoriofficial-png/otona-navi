@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+
+<link rel="icon" href="data:," />
+<title>FC2で失敗しないための初心者ガイド｜大人の動画比較ナビ</title>
+<style>
+:root{
+--bg:#12151a;
+--bg-2:#171b21;
+--panel:#1c212a;
+--panel-2:#202632;
+--line:#2c333f;
+--text:#e8eaee;
+--muted:#a7aeb9;
+--faint:#7d8593;
+--accent:#c9a35c;
+--accent-ink:#17130a;
+--accent-soft:rgba(201,163,92,.14);
+--danger:#d98a8a;
+--radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic UI",system-ui,-apple-system,"Segoe UI",sans-serif;
+line-height:1.75;
+font-size:16px;
+-webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* ---------- Age gate ---------- */
+.gate{
+position:fixed;inset:0;z-index:50;
+background:
+radial-gradient(640px 420px at 85% -10%, rgba(201,163,92,.10), transparent 60%),
+radial-gradient(520px 380px at -10% 110%, rgba(90,110,140,.12), transparent 60%),
+var(--bg);
+display:flex;align-items:center;justify-content:center;
+padding:24px 18px;overflow-y:auto;
+}
+.gate[hidden]{display:none}
+.gate-card{
+width:100%;max-width:520px;
+background:var(--panel);
+border:1px solid var(--line);
+border-radius:18px;
+padding:34px 28px 28px;
+text-align:center;
+}
+.gate-mark{
+width:56px;height:56px;margin:0 auto 16px;
+border:1.5px solid var(--accent);border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+color:var(--accent);font-weight:700;font-size:15px;letter-spacing:.02em;
+}
+.gate-card h1{font-size:22px;margin:0 0 6px;letter-spacing:.02em}
+.gate-card.lead{color:var(--muted);font-size:14.5px;margin:0 0 4px}
+.gate-q{font-size:19px;font-weight:700;margin:20px 0 18px}
+.gate-btns{display:grid;gap:12px}
+.btn{
+appearance:none;border:0;cursor:pointer;
+font:inherit;font-weight:700;font-size:16px;
+padding:14px 20px;border-radius:10px;
+text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+transition:background.15s ease,border-color.15s ease;
+}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:#d8b56e}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--faint);color:var(--text)}
+.gate-note{color:var(--faint);font-size:12.5px;margin:18px 0 0;text-align:left}
+.gate-denied{margin-top:6px}
+.gate-denied p{color:var(--muted);font-size:15px;margin:0 0 16px}
+.draft-chip{
+display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;
+color:var(--accent);background:var(--accent-soft);
+border:1px solid rgba(201,163,92,.4);
+padding:3px 10px;border-radius:999px;margin-bottom:14px;
+}
+
+/* ---------- Layout ---------- */
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+main[hidden]{display:none}
+
+.topbar{
+border-bottom:1px solid var(--line);
+background:var(--bg-2);
+}
+.topbar.wrap{
+display:flex;align-items:center;justify-content:space-between;gap:12px;
+padding-top:12px;padding-bottom:12px;flex-wrap:wrap;
+}
+.topbar.status{font-size:12.5px;color:var(--muted)}
+.topbar.status strong{color:var(--accent);font-weight:700}
+.topbar.age-badge{
+font-size:12px;font-weight:700;color:var(--danger);
+border:1px solid rgba(217,138,138,.45);border-radius:999px;padding:3px 10px;white-space:nowrap;
+}
+
+.hero{padding:44px 0 8px}
+.hero h1{font-size:clamp(26px,5.4vw,38px);line-height:1.35;margin:0 0 14px;letter-spacing:.01em}
+.hero.sub{color:var(--muted);font-size:16px;margin:0;max-width:640px}
+.pr-box{
+margin-top:22px;background:var(--accent-soft);
+border:1px solid rgba(201,163,92,.35);border-radius:var(--radius);
+padding:14px 18px;font-size:14px;color:var(--text);
+display:flex;gap:12px;align-items:flex-start;
+}
+.pr-box.tag{
+flex:none;font-weight:800;font-size:13px;color:var(--accent-ink);
+background:var(--accent);border-radius:6px;padding:1px 8px;margin-top:2px;
+}
+.pr-box p{margin:0}
+
+section{padding:36px 0 4px}
+h2{font-size:21px;margin:0 0 6px;letter-spacing:.02em}
+.sec-lead{color:var(--muted);font-size:14.5px;margin:0 0 20px}
+
+/* ---------- Service cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{
+background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+padding:22px 20px;display:flex;flex-direction:column;
+}
+.card.kind{font-size:12px;color:var(--faint);letter-spacing:.06em;margin:0 0 4px}
+.card h3{font-size:19px;margin:0 0 4px;line-height:1.45}
+.card.one{color:var(--muted);font-size:14px;margin:0 0 16px}
+.card dl{margin:0 0 18px;display:grid;gap:14px}
+.card dt{font-size:12.5px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin:0 0 3px}
+.card dd{margin:0;font-size:14px;color:var(--text)}
+.card dd span{color:var(--muted)}
+.card.cta{margin-top:auto}
+.card.btn{width:100%}
+.btn-disabled{
+background:var(--panel-2);color:var(--faint);border:1px dashed var(--line);
+cursor:not-allowed;width:100%;
+}
+.cta-pr{font-size:12px;color:var(--faint);margin:10px 0 0;text-align:center}
+.cta-pr b{color:var(--accent);font-weight:700}
+
+/* ---------- Comparison table ---------- */
+.table-wrap{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--panel)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:13px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+thead th{background:var(--panel-2);font-size:14.5px}
+tbody th{width:22%;color:var(--accent);font-size:13px;letter-spacing:.03em;background:rgba(255,255,255,.015)}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+td{color:var(--text)}
+td small{display:block;color:var(--muted);font-size:12.5px}
+
+.notes{
+background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+padding:20px 22px;
+}
+.notes ul{margin:0;padding-left:1.2em;color:var(--muted);font-size:14.5px}
+.notes li{margin:6px 0}
+.notes li::marker{color:var(--accent)}
+
+/* ---------- Footer ---------- */
+footer{
+margin-top:52px;border-top:1px solid var(--line);background:var(--bg-2);
+padding:30px 0 40px;font-size:13.5px;color:var(--muted);
+}
+footer h2{font-size:15px;color:var(--text);margin:0 0 10px}
+footer dl{margin:0 0 18px;display:grid;gap:6px}
+footer dt{color:var(--faint);font-size:12px;letter-spacing:.05em}
+footer dd{margin:0 0 8px}
+footer a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.ban{
+border:1px solid rgba(217,138,138,.4);border-radius:10px;
+padding:12px 16px;color:var(--danger);font-weight:700;font-size:14px;text-align:center;
+}
+footer.fine{font-size:12px;color:var(--faint);margin-top:16px}
+
+@media (max-width:820px){
+.cards{grid-template-columns:1fr}
+table,tbody,tr,th,td{display:block;width:100%}
+thead{display:none}
+tbody th{width:100%;border-bottom:0;padding-bottom:2px}
+tbody td{border-bottom:0;padding-top:2px}
+tbody tr{border-bottom:1px solid var(--line);padding:6px 0}
+tbody tr:last-child{border-bottom:0}
+td::before{
+content:attr(data-svc);display:block;font-weight:700;color:var(--text);font-size:13px;margin-top:8px;
+}
+td:first-of-type::before{margin-top:0}
+}
+@media (prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+.btn{transition:none}
+}
+
+/* ---------- Article pages ---------- */
+.article{padding:40px 0 4px}
+.article h1{font-size:clamp(24px,4.6vw,32px);line-height:1.5;margin:0 0 16px;letter-spacing:.01em}
+.article .pr-box{margin:0 0 8px}
+.article h2{font-size:19px;margin:32px 0 8px}
+.article p{margin:0 0 14px}
+.back-wrap{margin-top:36px;border-top:1px solid var(--line);padding-top:20px}
+.back-link{font-weight:700;text-decoration:none}
+.back-link:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<!-- ===== 年齢確認ゲート ===== -->
+<div class="gate" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+<div class="gate-card">
+
+<div class="gate-mark" aria-hidden="true">18+</div>
+<h1 id="gateTitle">年齢確認</h1>
+<p class="lead">このサイトは、成人向けサービスを紹介する18歳以上対象のページです。<br />成人向けの表現そのものは掲載していませんが、対象サービスの性質上、年齢確認を行っています。</p>
+
+<div id="gateAsk">
+<p class="gate-q">あなたは18歳以上ですか？</p>
+<div class="gate-btns">
+<button type="button" class="btn btn-primary" id="btnYes">はい（入る）</button>
+<button type="button" class="btn btn-ghost" id="btnNo">いいえ（出る）</button>
+</div>
+<p class="gate-note">※ 18歳未満の方はこのページを閲覧できません。「いいえ」を選んだ場合、コンテンツは表示されません。</p>
+</div>
+
+<div id="gateDenied" class="gate-denied" hidden>
+<p class="gate-q">ご利用いただけません</p>
+<p>このサイトは18歳以上の方のみを対象としています。18歳未満の方は閲覧できませんので、このページを閉じてください。</p>
+<button type="button" class="btn btn-ghost" id="btnBack">年齢確認に戻る</button>
+</div>
+</div>
+</div>
+
+<!-- ===== 本体（年齢確認後に表示） ===== -->
+<main id="content" hidden>
+
+<div class="topbar">
+<div class="wrap">
+<p class="status" style="margin:0"><strong>18歳以上対象</strong>　成人向けサービスの比較情報サイトです</p>
+<span class="age-badge">18歳未満閲覧禁止</span>
+</div>
+</div>
+
+<div class="wrap">
+<article class="article">
+<h1>FC2で失敗しないための初心者ガイド</h1>
+<div class="pr-box">
+<span class="tag">PR</span>
+<p>このページはアフィリエイト広告を含みます。リンク先での利用により運営者に紹介報酬が発生する場合があります。料金や条件は各サービスの公式サイトでご確認ください。</p>
+</div>
+
+<p>FC2コンテンツマーケットは都度購入型のため、買い方を間違えると「思っていたのと違った」と感じることがあります。失敗を減らすための基本をまとめました。</p>
+<h2>サンプルは必ず見る</h2>
+<p>多くの商品にはサンプルが用意されています。画質や雰囲気は説明文だけではわかりにくいため、購入前にサンプルで確認する習慣をつけましょう。</p>
+<h2>商品説明で「中身の条件」を確認する</h2>
+<p>再生時間、ファイル形式、販売地域の制限などは商品ごとに異なります。とくに再生時間は満足度に直結しやすいので、価格とあわせて必ずチェックしてください。</p>
+<h2>レビューと販売者評価をあわせて見る</h2>
+<p>購入者のレビューと、販売者への評価集計は判断材料になります。評価が極端に少ない商品は、まず低価格のものから試すなど、慎重に選ぶのが無難です。</p>
+<h2>返品・キャンセルはできない前提で買う</h2>
+<p>公式ヘルプでは、返品・キャンセルは受け付けていないと案内されています。「とりあえず買ってみる」ではなく、確認してから買う姿勢が大切です。</p>
+<h2>購入後は早めにダウンロード</h2>
+<p>購入した商品は原則無期限に視聴できますが、販売者が商品を削除すると視聴できなくなる場合があります。大切な商品は早めにダウンロードしておくと安心です。</p>
+<h2>予算を決めて使う</h2>
+<p>1点ごとに課金する仕組みは、気づかないうちに合計額が増えやすい面もあります。月の予算をあらかじめ決めておくと、使いすぎを防げます。</p>
+<p>FANZAとの違いは<a href="index.html">比較ページ</a>でまとめています。</p>
+
+<div class="back-wrap">
+<a class="back-link" href="index.html">← 比較トップへ戻る</a>
+</div>
+</article>
+</div>
+
+<footer>
+<div class="wrap">
+<h2>運営者情報</h2>
+<dl>
+<dt>運営者</dt>
+<dd>（運営者名）</dd>
+<dt>サイトについて</dt>
+<dd>成人向けサービス（FANZA／FC2コンテンツマーケット／FC2ライブ）の比較情報を掲載する個人運営のサイトです。</dd>
+<dt>広告について</dt>
+<dd>このサイトはアフィリエイト広告を含みます。リンク先での利用により運営者に紹介報酬が発生する場合があります。</dd>
+<dt>プライバシーポリシー</dt>
+<dd><a href="#" aria-disabled="true">プライバシーポリシー（準備中）</a></dd>
+</dl>
+<p class="ban">18歳未満の方の閲覧・利用は固くお断りします</p>
+<p class="fine">掲載情報は作成時点のものです。各サービスの最新の料金・規約は公式サイトでご確認ください。</p>
+</div>
+</footer>
+</main>
+
+<script>
+(function () {
+var gate = document.getElementById('ageGate');
+var content = document.getElementById('content');
+var ask = document.getElementById('gateAsk');
+var denied = document.getElementById('gateDenied');
+
+document.getElementById('btnYes').addEventListener('click', function () {
+gate.hidden = true;
+content.hidden = false;
+window.scrollTo(0, 0);
+});
+document.getElementById('btnNo').addEventListener('click', function () {
+ask.hidden = true;
+denied.hidden = false;
+});
+document.getElementById('btnBack').addEventListener('click', function () {
+denied.hidden = true;
+ask.hidden = false;
+});
+})();
+</script>
+</body>
+</html>
