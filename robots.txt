@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bikatsubiyoriofficial-png.github.io/otona-navi/sitemap.xml
